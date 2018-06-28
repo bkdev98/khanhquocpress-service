@@ -9,6 +9,9 @@
     "build": "npm run clean && babel src -d build",
     "start": "cross-env NODE_ENV=prod node build/index.js"
   },
+  "engines": {
+    "node": "8.11.1"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
