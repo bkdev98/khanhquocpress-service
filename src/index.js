@@ -5,7 +5,7 @@ import qs from 'qs';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
-import configs from './config.json';
+import configs from './config.js';
 
 const app = express();
 
