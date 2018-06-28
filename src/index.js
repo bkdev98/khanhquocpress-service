@@ -13,7 +13,7 @@ const { client_id, client_secret, rescuetime_key, refresh_token } = configs;
 
 const redirect_uri = process.env.NODE_ENV === 'dev'
   ? 'http://localhost:1221/callback'
-  : 'https://api.khanhquoc.press/callback';
+  : 'https://kqp-service.herokuapp.com/callback';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
