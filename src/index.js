@@ -122,7 +122,7 @@ app.get('/tracks', async (req, res) => {
   }
 });
 
-app.listen(1221, err => {
+app.listen(process.env.PORT || 1221, err => {
   if (!err) {
     console.log("Server is up")
   } else {
