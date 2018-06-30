@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon --exec babel-node src/index.js",
     "clean": "rm -rf build && mkdir build",
-    "build": "npm run clean && babel src -d build",
+    "build": "npm run clean && babel src -d build --copy-files",
     "start": "cross-env NODE_ENV=prod node build/index.js"
   },
   "dependencies": {

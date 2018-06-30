@@ -12,6 +12,10 @@ const redirect_uri = process.env.NODE_ENV === 'dev'
   ? 'http://localhost:1221/callback'
   : 'https://api.khanhquoc.press/callback';
 
+const saveDir = process.env.NODE_ENV === 'dev'
+  ? './src/token.json'
+  : './token.json';
+
 export const getFormBody = formData => Object.keys(formData).map(key =>
   encodeURIComponent(key) + '=' + encodeURIComponent(formData[key])).join('&');
 
@@ -33,7 +37,7 @@ export const getSpotifyAccessToken = async code => {
     });
     let rs = await result.json();
     rs.timestamp = Date.now();
-    fs.writeFileSync('./src/token.json', JSON.stringify(rs, null, 2) , 'utf-8');
+    fs.writeFileSync(saveDir, JSON.stringify(rs, null, 2) , 'utf-8');
     console.log('Gotcha token');
     return rs;
   } catch (error) {
@@ -59,7 +63,7 @@ export const refreshSpotifyToken = async token => {
     const rs = await result.json();
     rs.timestamp = Date.now();
     rs.refresh_token = token;
-    fs.writeFileSync('./src/token.json', JSON.stringify(rs, null, 2) , 'utf-8');
+    fs.writeFileSync(saveDir, JSON.stringify(rs, null, 2) , 'utf-8');
     console.log('Refreshed token');
     return rs;
   } catch (error) {
