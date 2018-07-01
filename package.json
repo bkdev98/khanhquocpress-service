@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.4"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon --exec babel-node src/index.js",
     "clean": "rm -rf build && mkdir build",
@@ -14,6 +17,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "node-fetch": "^2.1.2",
     "qs": "^6.5.2"

@@ -5,14 +5,13 @@ import qs from 'qs';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
+import './env';
 import configs from './config.js';
 import { getTracks, getCategories, getSpotifyAccessToken } from './util';
 
 const app = express();
-
-const { client_id, client_secret, rescuetime_key, refresh_token } = configs;
+const { client_id } = configs;
 const port = process.env.PORT || 1221;
-
 const redirect_uri = process.env.NODE_ENV === 'dev'
   ? 'http://localhost:1221/callback'
   : 'https://api.khanhquoc.press/callback';
