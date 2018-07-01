@@ -35,6 +35,7 @@ app.get('/callback', async (req, res) => {
 
     return res.status(200).json(token);
   } catch (error) {
+    console.error(error);
     return res.sendStatus(400);
   }
 });
@@ -45,6 +46,7 @@ app.get('/activities', async (req, res) => {
 
     return res.status(200).json(categories);
   } catch (error) {
+    console.error(error);
     return res.sendStatus(400);
   }
 });
@@ -55,6 +57,7 @@ app.get('/tracks', async (req, res) => {
 
     return res.status(200).json(tracks);
   } catch (error) {
+    console.error(error);
     return res.sendStatus(400);
   }
 });
@@ -66,6 +69,7 @@ app.get('/', async (req, res) => {
 
     return res.status(200).json({ tracks, categories });
   } catch (error) {
+    console.error(error);
     return res.sendStatus(400);
   }
 });
