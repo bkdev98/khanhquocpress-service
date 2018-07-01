@@ -141,6 +141,7 @@ export const getRecentlyPlayedTrack = async (access_token, limit) => {
 
 export const getTracks = async () => {
   try {
+    let tracks = [];
     let limit = 4;
     let token = access_token;
     if (!access_token || !refresh_token) {
@@ -154,9 +155,12 @@ export const getTracks = async () => {
     const currentlyTrack = await getCurrentlyPlayingTrack(token);
     if (!currentlyTrack) {
       limit = 5;
+    } else {
+      tracks.push(currentlyTrack);
     }
     const recentlyTracks = await getRecentlyPlayedTrack(token, limit);
-    return [currentlyTrack, ...recentlyTracks];
+    tracks = [...tracks, ...recentlyTracks];
+    return tracks;
   } catch (error) {
     throw error;
   }
