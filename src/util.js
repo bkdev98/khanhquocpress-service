@@ -82,15 +82,15 @@ export const getCurrentlyPlayingTrack = async access_token => {
       }
     });
 
-    if (result.status === 200) {
+    if (result.status === 200 && result.data.item) {
       const { item } = result.data;
       track = {
-        artist: item.artists.length > 0 ? item.artists[0].name : '',
+        artist: item.artists[0].name,
         key: item.id,
         link: item.external_urls.spotify,
         thumbs: {
-          alt: item.album.images.length > 0 ? item.album.images[0].url : '',
-          yt: item.album.images.length > 0 ? item.album.images[0].url : '',
+          alt: item.album.images[0].url,
+          yt: item.album.images[0].url,
         },
         timestamp: {
           nowplaying: true,
@@ -120,12 +120,12 @@ export const getRecentlyPlayedTrack = async (access_token, limit) => {
     });
     if (result.status === 200) {
       tracks = result.data.items.map(item => ({
-        artist: item.artists.length > 0 ? item.track.artists[0].name : '',
+        artist: item.track.artists[0].name,
         key: item.track.id,
         link: item.track.external_urls.spotify,
         thumbs: {
-          alt: item.track.album.images.length > 0 ? item.track.album.images[0].url : '',
-          yt: item.track.album.images.length > 0 ? item.track.album.images[0].url : '',
+          alt: item.track.album.images[0].url,
+          yt: item.track.album.images[0].url,
         },
         timestamp: {
           uts: new Date(item.played_at).getTime(),
