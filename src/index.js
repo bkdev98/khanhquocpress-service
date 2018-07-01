@@ -15,10 +15,22 @@ const port = process.env.PORT || 1221;
 const redirect_uri = process.env.NODE_ENV === 'dev'
   ? 'http://localhost:1221/callback'
   : 'https://api.khanhquoc.press/callback';
+const corsOptions = process.env.NODE_ENV === 'dev'
+  ? true
+  : {
+    origin: function (origin, callback) {
+      if (['https://khanhquoc.press'].indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  };
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+
+app.use(cors(corsOptions));
 
 app.get('/login', function(req, res) {
   var scopes = 'user-read-recently-played user-read-currently-playing';
